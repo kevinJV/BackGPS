@@ -127,7 +127,7 @@ DATABASES = {
         'NAME': 'd34e8esj21voeb',
         'USER': 'guarded-wave-21392',
         'PASSWORD': '',
-        'HOST': 'postgres://scfitoipjcpeon:bffe2cb3f3880da37e2feab21627196e3a25927220652bd4a880215326692b4b@ec2-107-21-99-237.compute-1.amazonaws.com',   # Or an IP Address that your DB is hosted on
+        'HOST': 'scfitoipjcpeon:bffe2cb3f3880da37e2feab21627196e3a25927220652bd4a880215326692b4b@ec2-107-21-99-237.compute-1.amazonaws.com',   # Or an IP Address that your DB is hosted on
         'PORT': '5432',
         # 'OPTIONS': {
         #     'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
