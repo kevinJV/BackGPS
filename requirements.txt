@@ -1,6 +1,7 @@
 Django==2.0.6
-pytz==2018.9
 django-cors-headers==2.2.0
+pytz==2018.9
+mysqlclient==1.4.1
 django-allauth==0.36.0
 django-filter==1.1.0
 django-rest-auth==0.9.3
