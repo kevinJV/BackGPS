@@ -8,7 +8,7 @@ router = routers.DefaultRouter()
 
 urlpatterns = [       
     re_path(r'^', include(router.urls)),
-    re_path(r'^profile/$', views.UnidadesList.as_view())
+    re_path(r'^unidades/$', views.UnidadesList.as_view())
     # url(
     #     r'^unidades/(?P<pk>\d+)/$',
     #     views.UnidadesView.as_view({'get': 'get'}),
