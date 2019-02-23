@@ -7,7 +7,7 @@ from .models import Gps
 #----------------------Serializers--------------------
 from .serializers import GpsSerializer
 
-from rest_framework import viewsets, permissions, status
+from rest_framework import viewsets, permissions
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.decorators import action
@@ -25,9 +25,9 @@ class GpsList(APIView):
             serializer.save()
             data = serializer.data
             response = data
-            return Response(response, status = status.HTTP_201_CREATED) 
+            return Response(response) 
         response = serializer.errors
-        return Response(response, status = status.HTTP_400_BAD_REQUEST)
+        return Response(response)
 
 
 
