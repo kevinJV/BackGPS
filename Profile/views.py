@@ -25,9 +25,9 @@ class ProfileList(APIView):
             serializer.save()
             data = serializer.data
             response = data
-            return Response(response, status = status.HTTP_201_CREATED) 
+            return Response(response) 
         response = serializer.errors
-        return Response(response, status = status.HTTP_400_BAD_REQUEST)
+        return Response(response)
 
     # permission_classes = (permissions.IsAuthenticated,)
 
