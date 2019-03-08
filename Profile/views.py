@@ -37,7 +37,7 @@ class ProfileList(APIView):
             return Response(serializer.data)
         return Response(serializer.errors)
 
-    def remove(self, request):
+    def delete(self, request):
         id = request.data['id']
         profile = self.get_object(id)
         profile.delete()
