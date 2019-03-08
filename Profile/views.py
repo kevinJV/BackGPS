@@ -29,6 +29,14 @@ class ProfileList(APIView):
         response = serializer.errors
         return Response(response)
 
+    def put(self, request, format = None):
+        profile = self.get_object(request.data['id'])
+        serializer = ProfileSerializer(profile, data = request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors)
+
     # permission_classes = (permissions.IsAuthenticated,)
 
     # @action(methods = ['get'], detail = False)
