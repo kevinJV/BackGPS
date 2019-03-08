@@ -37,6 +37,12 @@ class ProfileList(APIView):
             return Response(serializer.data)
         return Response(serializer.errors)
 
+    def get_object(self, pk):
+        try:
+            return Profile.objects.get(pk = pk)
+        except Profile.DoesNotExist:
+            raise Http404
+
     # permission_classes = (permissions.IsAuthenticated,)
 
     # @action(methods = ['get'], detail = False)
