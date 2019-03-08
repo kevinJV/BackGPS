@@ -30,7 +30,11 @@ class ProfileList(APIView):
         return Response(response)
 
     def put(self, request, format = None):
-        profile = self.get_object(request.data['id'])
+        user_id =request.data['id']
+        if user_id == None:
+            return Response('id no enviada')
+
+        profile = self.get_object()
         serializer = ProfileSerializer(profile, data = request.data)
         if serializer.is_valid():
             serializer.save()
