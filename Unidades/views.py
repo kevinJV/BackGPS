@@ -28,6 +28,27 @@ class UnidadesList(APIView):
             return Response(response) 
         response = serializer.errors
         return Response(response)
+    
+    def put(self, request, format = None):
+        unidad = self.get_object(request.data['id'])
+        serializer = UnidadesSerializer(unidad, data = request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors)
+
+    def delete(self, request):
+        id = request.data['id']
+        unidad = self.get_object(id)
+        unidad.delete()
+        msg = "Unidad " , id , " borrado con exito"
+        return Response(msg)
+
+    def get_object(self, pk):
+        try:
+            return Unidades.objects.get(pk = pk)
+        except Unidades.DoesNotExist:
+            raise Http404
 
     # permission_classes = (permissions.IsAuthenticated,)
 
