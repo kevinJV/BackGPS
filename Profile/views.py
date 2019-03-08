@@ -30,16 +30,19 @@ class ProfileList(APIView):
         return Response(response)
 
     def put(self, request, format = None):
-        user_id =request.data['id']
-        if user_id == None:
-            return Response('id no enviada')
-
-        profile = self.get_object()
+        profile = self.get_object(request.data['id'])
         serializer = ProfileSerializer(profile, data = request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data)
         return Response(serializer.errors)
+
+    def remove(self, request):
+        id = request.data['id']
+        profile = self.get_object(id)
+        profile.delete()
+        msg = "Profile " , id , " borrado con exito"
+        return Response(msg)
 
     def get_object(self, pk):
         try:
