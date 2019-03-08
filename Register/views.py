@@ -30,6 +30,27 @@ class DispositivoList(APIView):
             return Response(response) 
         response = serializer.errors
         return Response(response)
+
+    def put(self, request, format = None):
+        dispositivo = self.get_object(request.data['id'])
+        serializer = DispositivoSerializer(dispositivo, data = request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors)
+
+    def delete(self, request):
+        id = request.data['id']
+        dispositivo = self.get_object(id)
+        dispositivo.delete()
+        msg = "Unidad " , id , " borrado con exito"
+        return Response(msg)
+
+    def get_object(self, pk):
+        try:
+            return Dispositivo.objects.get(pk = pk)
+        except Dispositivo.DoesNotExist:
+            raise Http404
         
     # permission_classes = (permissions.IsAuthenticated,)
 
