@@ -29,6 +29,26 @@ class GpsList(APIView):
         response = serializer.errors
         return Response(response)
 
+    def put(self, request, format = None):
+        gps = self.get_object(request.data['id'])
+        serializer = GpsSerializer(gps, data = request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors)
+
+    def delete(self, request):
+        id = request.data['id']
+        gps = self.get_object(id)
+        gps.delete()
+        msg = "Gps " , id , " borrado con exito"
+        return Response(msg)
+
+    def get_object(self, pk):
+        try:
+            return Gps.objects.get(pk = pk)
+        except Gps.DoesNotExist:
+            raise Http404
 
 
 # # Create your views here.

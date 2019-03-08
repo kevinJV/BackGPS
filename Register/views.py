@@ -43,7 +43,7 @@ class DispositivoList(APIView):
         id = request.data['id']
         dispositivo = self.get_object(id)
         dispositivo.delete()
-        msg = "Unidad " , id , " borrado con exito"
+        msg = "Dispositivo " , id , " borrado con exito"
         return Response(msg)
 
     def get_object(self, pk):
